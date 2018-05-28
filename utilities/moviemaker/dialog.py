@@ -243,7 +243,8 @@ class Dialog(QtWidgets.QWidget):
         mainLayout.addWidget(tabwidget)
 
         generalwidget = QtWidgets.QWidget(self)
-        tabwidget.addTab(generalwidget, 'General')
+		# tabwidget.addTab(generalwidget, 'General')
+        tabwidget.addTab(generalwidget, '全局设置')
         generallayout = QtWidgets.QVBoxLayout(generalwidget)
 
         drawingwidget = QtWidgets.QWidget(self)
@@ -275,7 +276,8 @@ class Dialog(QtWidgets.QWidget):
 
         # Format:
         layout = QtWidgets.QHBoxLayout()
-        label = QtWidgets.QLabel('Format:', self)
+        # label = QtWidgets.QLabel('Format:', self)
+        label = QtWidgets.QLabel('格式:', self)
         label.setToolTip(
             'Movie resolution.\n'
             'Format presets located in\n' + FormatsPath
@@ -293,7 +295,8 @@ class Dialog(QtWidgets.QWidget):
         self.fields['format'].currentIndexChanged.connect( self.evaluate)
         layout.addWidget(self.fields['format'])
 
-        label = QtWidgets.QLabel('FPS:', self)
+        # label = QtWidgets.QLabel('FPS:', self)
+        label = QtWidgets.QLabel('每秒帧数:', self)
         label.setToolTip('Frame rate.')
         layout.addWidget(label)
         self.fields['fps'] = QtWidgets.QComboBox(self)
@@ -306,7 +309,8 @@ class Dialog(QtWidgets.QWidget):
         self.fields['fps'].currentIndexChanged.connect( self.evaluate)
         layout.addWidget(self.fields['fps'])
 
-        label = QtWidgets.QLabel('Codec:', self)
+        # label = QtWidgets.QLabel('Codec:', self)
+        label = QtWidgets.QLabel('编解码器:', self)
         label.setToolTip('Codec presets located in\n' + CodecsPath)
         self.fields['codec'] = QtWidgets.QComboBox(self)
         i = 0
@@ -319,7 +323,8 @@ class Dialog(QtWidgets.QWidget):
         layout.addWidget(label)
         layout.addWidget(self.fields['codec'])
 
-        label = QtWidgets.QLabel('Container:')
+        # label = QtWidgets.QLabel('Container:')
+        label = QtWidgets.QLabel('视频格式:')
         label.setToolTip(
             'Video stream container.\n'
             'Movie file name extension will be set according to it.'
@@ -337,14 +342,16 @@ class Dialog(QtWidgets.QWidget):
 
         generallayout.addLayout(layout)
 
-        group = QtWidgets.QGroupBox('Information')
+        # group = QtWidgets.QGroupBox('Information')
+        group = QtWidgets.QGroupBox('作业信息')
         grouplayout = QtWidgets.QVBoxLayout()
         group.setLayout(grouplayout)
         generallayout.addWidget(group)
 
         layout = QtWidgets.QHBoxLayout()
         grouplayout.addLayout(layout)
-        label = QtWidgets.QLabel('Company:', self)
+        # label = QtWidgets.QLabel('Company:', self)
+        label = QtWidgets.QLabel('公司信息:', self)
         layout.addWidget(label)
         label.setToolTip(
             'Draw company name.\n'
@@ -353,19 +360,22 @@ class Dialog(QtWidgets.QWidget):
         self.fields['company'] = QtWidgets.QLineEdit(Options.company, self)
         layout.addWidget(self.fields['company'])
         self.fields['company'].editingFinished.connect( self.evaluate)
-        label = QtWidgets.QLabel('Project:', self)
+        # label = QtWidgets.QLabel('Project:', self)
+        label = QtWidgets.QLabel('项目名称:', self)
         layout.addWidget(label)
         label.setToolTip('Project name.')
         self.fields['project'] = QtWidgets.QLineEdit(Options.project, self)
         layout.addWidget(self.fields['project'])
         self.fields['project'].editingFinished.connect( self.evaluate)
-        label = QtWidgets.QLabel('Shot:', self)
+        # label = QtWidgets.QLabel('Shot:', self)
+        label = QtWidgets.QLabel('镜头:', self)
         layout.addWidget(label)
         label.setToolTip('Shot name.')
         self.fields['shot'] = QtWidgets.QLineEdit('', self)
         layout.addWidget(self.fields['shot'])
         self.fields['shot'].editingFinished.connect( self.evaluate)
-        label = QtWidgets.QLabel('Version:', self)
+        # label = QtWidgets.QLabel('Version:', self)
+        label = QtWidgets.QLabel('版本:', self)
         layout.addWidget(label)
         label.setToolTip('Shot version.')
         self.fields['version'] = QtWidgets.QLineEdit('', self)
@@ -381,13 +391,15 @@ class Dialog(QtWidgets.QWidget):
         self.fields['autotitles'].stateChanged.connect( self.autoTitles)
 
         layout = QtWidgets.QHBoxLayout()
-        label = QtWidgets.QLabel('Artist:', self)
+        # label = QtWidgets.QLabel('Artist:', self)
+        label = QtWidgets.QLabel('艺术家名:', self)
         label.setToolTip('Artist name.')
         layout.addWidget(label)
         self.fields['artist'] = QtWidgets.QLineEdit(Artist, self)
         layout.addWidget(self.fields['artist'])
         self.fields['artist'].editingFinished.connect( self.evaluate)
-        label = QtWidgets.QLabel('Activity:', self)
+        # label = QtWidgets.QLabel('Activity:', self)
+        label = QtWidgets.QLabel('作业活动:', self)
         label.setToolTip('Shot activity to show.')
         layout.addWidget(label)
         self.fields['activity'] = QtWidgets.QLineEdit('', self)
@@ -401,13 +413,15 @@ class Dialog(QtWidgets.QWidget):
         grouplayout.addLayout(layout)
 
         layout = QtWidgets.QHBoxLayout()
-        layout.addWidget(QtWidgets.QLabel('Comments:', self))
+        # layout.addWidget(QtWidgets.QLabel('Comments:', self))
+        layout.addWidget(QtWidgets.QLabel('注释:', self))
         self.fields['comments'] = QtWidgets.QLineEdit(self)
         self.fields['comments'].editingFinished.connect( self.evaluate)
         layout.addWidget(self.fields['comments'])
         grouplayout.addLayout(layout)
 
-        group = QtWidgets.QGroupBox('Input Sequence Pattern')
+        # group = QtWidgets.QGroupBox('Input Sequence Pattern')
+        group = QtWidgets.QGroupBox('输入文件')
         grouplayout = QtWidgets.QVBoxLayout()
         group.setLayout(grouplayout)
         generallayout.addWidget(group)
@@ -422,6 +436,7 @@ class Dialog(QtWidgets.QWidget):
         grouplayout.addWidget(self.fields['input0'])
 
         layout = QtWidgets.QHBoxLayout()
+        # label = QtWidgets.QLabel('Files count:', self)
         label = QtWidgets.QLabel('Files count:', self)
         label.setToolTip('Files found matching pattern.')
         layout.addWidget(label)
@@ -461,25 +476,29 @@ class Dialog(QtWidgets.QWidget):
         grouplayout.addLayout(layout)
 
         lIdentify = QtWidgets.QHBoxLayout()
-        self.cbIdentify = QtWidgets.QCheckBox('Identify:', self)
+        # self.cbIdentify = QtWidgets.QCheckBox('Identify:', self)
+        self.cbIdentify = QtWidgets.QCheckBox('文件确认:', self)
         self.cbIdentify.setChecked(not Options.noidentify)
         self.cbIdentify.setToolTip('Input file identification.')
         self.editIdentify = QtWidgets.QLineEdit(self)
         self.editIdentify.setEnabled(False)
-        self.btnIdentify = QtWidgets.QPushButton('Refresh', self)
+        # self.btnIdentify = QtWidgets.QPushButton('Refresh', self)
+        self.btnIdentify = QtWidgets.QPushButton('更新', self)
         self.btnIdentify.pressed.connect( self.inputFileChanged)
         lIdentify.addWidget(self.cbIdentify)
         lIdentify.addWidget(self.editIdentify)
         lIdentify.addWidget(self.btnIdentify)
         grouplayout.addLayout(lIdentify)
 
-        group = QtWidgets.QGroupBox('Output File')
+        # group = QtWidgets.QGroupBox('Output File')
+        group = QtWidgets.QGroupBox('输出文件')
         grouplayout = QtWidgets.QVBoxLayout()
         group.setLayout(grouplayout)
         generallayout.addWidget(group)
 
         layout = QtWidgets.QHBoxLayout()
-        label = QtWidgets.QLabel('Name:', self)
+        # label = QtWidgets.QLabel('Name:', self)
+        label = QtWidgets.QLabel('文件名称:', self)
         label.setToolTip(
             'Result movie name.\n'
             'Extension will be added according to video stream container.\n'
@@ -489,7 +508,8 @@ class Dialog(QtWidgets.QWidget):
         self.fields['outputname'] = QtWidgets.QLineEdit(self)
         layout.addWidget(self.fields['outputname'])
         self.fields['outputname'].editingFinished.connect( self.evaluate)
-        self.fields['usenamerule'] = QtWidgets.QCheckBox('Rule:', self)
+        # self.fields['usenamerule'] = QtWidgets.QCheckBox('Rule:', self)
+        self.fields['usenamerule'] = QtWidgets.QCheckBox('命名规则:', self)
         self.fields['usenamerule'].setChecked(True)
         self.fields['usenamerule'].setToolTip('Use Naming Rule.')
         self.fields['usenamerule'].stateChanged.connect( self.autoOutputName)
@@ -514,13 +534,15 @@ class Dialog(QtWidgets.QWidget):
         grouplayout.addLayout(layout)
 
         layout = QtWidgets.QHBoxLayout()
-        label = QtWidgets.QLabel('Folder:', self)
+        # label = QtWidgets.QLabel('Folder:', self)
+        label = QtWidgets.QLabel('文件夹:', self)
         label.setToolTip('Result movie will be placed in this directory.')
         layout.addWidget(label)
         self.fields['outputfolder'] = QtWidgets.QLineEdit(self)
         self.fields['outputfolder'].editingFinished.connect( self.evaluate)
         layout.addWidget(self.fields['outputfolder'])
-        self.btnBrowseOutputDir = QtWidgets.QPushButton('Browse', self)
+        # self.btnBrowseOutputDir = QtWidgets.QPushButton('Browse', self)
+        self.btnBrowseOutputDir = QtWidgets.QPushButton('浏览', self)
         self.btnBrowseOutputDir.pressed.connect( self.browseOutputFolder)
         layout.addWidget(self.btnBrowseOutputDir)
         grouplayout.addLayout(layout)
@@ -1136,16 +1158,19 @@ class Dialog(QtWidgets.QWidget):
         layout = QtWidgets.QHBoxLayout()
         mainLayout.addLayout(layout)
 
-        self.btnStart = QtWidgets.QPushButton('&Start', self)
+        # self.btnStart = QtWidgets.QPushButton('&Start', self)
+        self.btnStart = QtWidgets.QPushButton('&开始', self)
         layout.addWidget(self.btnStart)
         self.btnStart.setEnabled(False)
         self.btnStart.pressed.connect( self.execute)
 
-        self.btnRefresh = QtWidgets.QPushButton('&Refresh', self)
+        # self.btnRefresh = QtWidgets.QPushButton('&Refresh', self)
+        self.btnRefresh = QtWidgets.QPushButton('&刷新', self)
         layout.addWidget(self.btnRefresh)
         self.btnRefresh.pressed.connect( self.evaluate)
 
-        self.btnStop = QtWidgets.QPushButton('Sto&p', self)
+        #self.btnStop = QtWidgets.QPushButton('Sto&p', self)
+        self.btnStop = QtWidgets.QPushButton('&停止', self)
         self.btnStop.setEnabled(False)
         self.btnStop.pressed.connect( self.processStop)
         layout.addWidget(self.btnStop)
@@ -1157,11 +1182,13 @@ class Dialog(QtWidgets.QWidget):
         self.cbRecent.activated.connect( self.loadRecent)
         layout.addWidget(self.cbRecent)
 
-        self.bBrowseLoad = QtWidgets.QPushButton('Load', self)
+        #self.bBrowseLoad = QtWidgets.QPushButton('Load', self)
+        self.bBrowseLoad = QtWidgets.QPushButton('加载', self)
         layout.addWidget(self.bBrowseLoad)
         self.bBrowseLoad.pressed.connect( self.browseLoad)
 
-        self.bBrowseSave = QtWidgets.QPushButton('Save', self)
+        #self.bBrowseSave = QtWidgets.QPushButton('Save', self)
+        self.bBrowseSave = QtWidgets.QPushButton('保存', self)
         layout.addWidget(self.bBrowseSave)
         self.bBrowseSave.pressed.connect( self.browseSave)
 

@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "Afanasy common pre remove (nothing to do)"
-
-exit 0
