@@ -1,0 +1,7 @@
+# Afanasy binaries
+
+archives
+bin
+
+# Non root user
+nonrootuser

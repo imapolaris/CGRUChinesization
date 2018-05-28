@@ -1,0 +1,24 @@
+# Cmake generated files
+
+CMakeFiles
+*.cmake
+CMakeCache.txt
+Makefile
+
+# Qt moc files
+*/__/
+*moc_*.cpp
+*_automoc.cpp
+
+# MS Visual Studio:
+*.user
+*.filters
+*.vcxproj
+*.dir
+*.sln
+*.opensdf
+*.VC.db
+*.VC.opendb
+Debug
+Release
+ipch
