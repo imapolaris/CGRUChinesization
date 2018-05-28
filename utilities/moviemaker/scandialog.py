@@ -118,16 +118,19 @@ class Dialog(QtWidgets.QWidget):
 
         self.tabwidget = QtWidgets.QTabWidget(self)
         self.generalwidget = QtWidgets.QWidget(self)
-        self.tabwidget.addTab(self.generalwidget, 'General')
+        #self.tabwidget.addTab(self.generalwidget, 'General')
+        self.tabwidget.addTab(self.generalwidget, '全局设置')
         self.generallayout = QtWidgets.QVBoxLayout(self.generalwidget)
         self.parameterswidget = QtWidgets.QWidget(self)
-        self.tabwidget.addTab(self.parameterswidget, 'Parameters')
+        #self.tabwidget.addTab(self.parameterswidget, 'Parameters')
+        self.tabwidget.addTab(self.parameterswidget, '参数设置')
         self.parameterslayout = QtWidgets.QVBoxLayout(self.parameterswidget)
         self.mainLayout.addWidget(self.tabwidget)
 
         # General:
         self.lFormat = QtWidgets.QHBoxLayout()
-        self.tFormat = QtWidgets.QLabel('Format:', self)
+        #self.tFormat = QtWidgets.QLabel('Format:', self)
+        self.tFormat = QtWidgets.QLabel('格式:', self)
         self.tFormat.setToolTip('Movie resolution.\n'
                                 'Format presets located in\n' + FormatsPath)
         self.cbFormat = QtWidgets.QComboBox(self)
@@ -138,7 +141,8 @@ class Dialog(QtWidgets.QWidget):
                 self.cbFormat.setCurrentIndex(i)
             i += 1
         self.cbFormat.currentIndexChanged.connect( self.evaluate)
-        self.tCodec = QtWidgets.QLabel('Codec:', self)
+        #self.tCodec = QtWidgets.QLabel('Codec:', self)
+        self.tCodec = QtWidgets.QLabel('编解码器:', self)
         self.tCodec.setToolTip('Codec presets located in\n' + CodecsPath)
         self.cbCodec = QtWidgets.QComboBox(self)
         i = 0
@@ -148,7 +152,8 @@ class Dialog(QtWidgets.QWidget):
                 self.cbCodec.setCurrentIndex(i)
             i += 1
         self.cbCodec.currentIndexChanged.connect( self.evaluate)
-        self.tFPS = QtWidgets.QLabel('FPS:', self)
+        #self.tFPS = QtWidgets.QLabel('FPS:', self)
+        self.tFPS = QtWidgets.QLabel('每秒帧数:', self)
         self.tFPS.setToolTip('Frame rate.')
         self.cbFPS = QtWidgets.QComboBox(self)
         self.cbFPS.addItem('24')
@@ -165,7 +170,8 @@ class Dialog(QtWidgets.QWidget):
         self.generallayout.addLayout(self.lFormat)
 
         self.lInput = QtWidgets.QHBoxLayout()
-        self.tInput = QtWidgets.QLabel('Scan Folder', self)
+        #self.tInput = QtWidgets.QLabel('Scan Folder', self)
+        self.tInput = QtWidgets.QLabel('扫描文件', self)
         self.lInput.addWidget(self.tInput)
         self.editInput = QtWidgets.QLineEdit(InputFolder, self)
         self.editInput.textEdited.connect( self.evaluate)
@@ -176,7 +182,8 @@ class Dialog(QtWidgets.QWidget):
         self.generallayout.addLayout(self.lInput)
 
         self.lExtensions = QtWidgets.QHBoxLayout()
-        self.tExtensions = QtWidgets.QLabel('Search extensions:', self)
+        #self.tExtensions = QtWidgets.QLabel('Search extensions:', self)
+        self.tExtensions = QtWidgets.QLabel('扩展搜索:', self)
         tooltip = 'Comma separated list.\n' \
                   'Leave empty to find all known:\n'
         for ext in Extensions:
@@ -189,7 +196,8 @@ class Dialog(QtWidgets.QWidget):
         self.generallayout.addLayout(self.lExtensions)
 
         self.lInclude = QtWidgets.QHBoxLayout()
-        self.tInclude = QtWidgets.QLabel('Include pattern:', self)
+        #self.tInclude = QtWidgets.QLabel('Include pattern:', self)
+        self.tInclude = QtWidgets.QLabel('包含搜索:', self)
         self.lInclude.addWidget(self.tInclude)
         self.editInclude = QtWidgets.QLineEdit(Options.include, self)
         self.editInclude.textEdited.connect( self.evaluate)
@@ -197,7 +205,8 @@ class Dialog(QtWidgets.QWidget):
         self.generallayout.addLayout(self.lInclude)
 
         self.lExclude = QtWidgets.QHBoxLayout()
-        self.tExclude = QtWidgets.QLabel('Exclude pattern:', self)
+        #self.tExclude = QtWidgets.QLabel('Exclude pattern:', self)
+        self.tExclude = QtWidgets.QLabel('排除搜索:', self)
         self.lExclude.addWidget(self.tExclude)
         self.editExclude = QtWidgets.QLineEdit(Options.exclude, self)
         self.editExclude.textEdited.connect( self.evaluate)
@@ -205,7 +214,8 @@ class Dialog(QtWidgets.QWidget):
         self.generallayout.addLayout(self.lExclude)
 
         self.lDateTime = QtWidgets.QHBoxLayout()
-        self.cDateTime = QtWidgets.QCheckBox('Skip folders ealier than:', self)
+        #self.cDateTime = QtWidgets.QCheckBox('Skip folders ealier than:', self)
+        self.cDateTime = QtWidgets.QCheckBox('跳过早于此时间的文件:', self)
         self.cDateTime.stateChanged.connect( self.evaluate)
         self.lDateTime.addWidget(self.cDateTime)
         self.eDateTime = QtWidgets.QDateTimeEdit(
@@ -217,7 +227,8 @@ class Dialog(QtWidgets.QWidget):
         self.generallayout.addLayout(self.lDateTime)
 
         self.lOutput = QtWidgets.QHBoxLayout()
-        self.tOutput = QtWidgets.QLabel('Output Folder:', self)
+        #self.tOutput = QtWidgets.QLabel('Output Folder:', self)
+        self.tOutput = QtWidgets.QLabel('扫描结果输出到:', self)
         self.lOutput.addWidget(self.tOutput)
         self.editOutput = QtWidgets.QLineEdit(OutputFolder, self)
         self.editOutput.editingFinished.connect( self.evaluate)
@@ -229,8 +240,9 @@ class Dialog(QtWidgets.QWidget):
 
 
         # Parameters:
+        #'Prefix movies names with images absolute input files path'
         self.cAbsPath = QtWidgets.QCheckBox(
-            'Prefix movies names with images absolute input files path',
+            '在名称前加入输入路径',
             self
         )
         self.cAbsPath.setChecked(Options.abspath)
@@ -277,10 +289,12 @@ class Dialog(QtWidgets.QWidget):
         self.lAutoAspect.addWidget(QtWidgets.QLabel(' (-1 = no changes) ', self))
         self.parameterslayout.addLayout(self.lAutoAspect)
 
-        self.gCorrectionSettings = QtWidgets.QGroupBox('Image Correction')
+        #self.gCorrectionSettings = QtWidgets.QGroupBox('Image Correction')
+        self.gCorrectionSettings = QtWidgets.QGroupBox('图像校正')
         self.lCorr = QtWidgets.QHBoxLayout()
         self.gCorrectionSettings.setLayout(self.lCorr)
-        self.tGamma = QtWidgets.QLabel('Gamma:', self)
+        #self.tGamma = QtWidgets.QLabel('Gamma:', self)
+        self.tGamma = QtWidgets.QLabel('灰度校正:', self)
         self.dsbGamma = QtWidgets.QDoubleSpinBox(self)
         self.dsbGamma.setRange(0.1, 10.0)
         self.dsbGamma.setDecimals(1)
@@ -298,13 +312,16 @@ class Dialog(QtWidgets.QWidget):
         self.mainLayout.addWidget(self.cmdField)
 
         self.lProcess = QtWidgets.QHBoxLayout()
-        self.btnStart = QtWidgets.QPushButton('Start', self)
+        #self.btnStart = QtWidgets.QPushButton('Start', self)
+        self.btnStart = QtWidgets.QPushButton('运行', self)
         self.btnStart.setEnabled(False)
         self.btnStart.pressed.connect( self.execute)
-        self.btnStop = QtWidgets.QPushButton('Stop', self)
+        #self.btnStop = QtWidgets.QPushButton('Stop', self)
+        self.btnStop = QtWidgets.QPushButton('停止', self)
         self.btnStop.setEnabled(False)
         self.btnStop.pressed.connect( self.processStop)
-        self.btnTest = QtWidgets.QPushButton('Test', self)
+        #self.btnTest = QtWidgets.QPushButton('Test', self)
+        self.btnTest = QtWidgets.QPushButton('测试', self)
         self.btnTest.setEnabled(False)
         self.btnTest.pressed.connect( self.executeTest)
         self.lProcess.addWidget(self.btnTest)
