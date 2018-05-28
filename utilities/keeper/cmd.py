@@ -66,32 +66,40 @@ def setAFANASYServer():
 def setDocsURL():
 	getVar(
 		'docshost',
-		'Set Docs Host',
-		'Enter host name or IP address:'
+		#'Set Docs Host',
+		'配置文件主机',
+		#'Enter host name or IP address:'
+		'输入命令：'
 	)
 
 
 def setTextEditor():
 	getVar(
 		'editor',
-		'Set Text Editor',
-		'Enter command with "%s":'
+		#'Set Text Editor',
+		'配置文本编辑器',
+		#'Enter command with "%s":'
+		'输入命令：'
 	)
 
 
 def setWebBrowser():
 	getVar(
 		'webbrowser',
-		'Set Web Browser',
-		'Enter command with "%s":'
+		#'Set Web Browser',
+		'配置浏览器',
+		#'Enter command with "%s":'
+		'输入命令：'
 	)
 
 
 def setOpenCmd():
 	getVar(
 		'open_folder_cmd',
-		'Set Open Folder Command',
-		'Enter command with "@PATH@":'
+		#'Set Open Folder Command',
+		'配置文件夹',
+		#'Enter command with "@PATH@":'
+		'输入命令：'
 	)
 
 

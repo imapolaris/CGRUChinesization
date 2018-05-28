@@ -214,19 +214,23 @@ class Tray(QtWidgets.QSystemTrayIcon):
             self.addAction('Configure', False,  'HTTPS Server...', self.httpsServer)
             self.menu['Configure'].addSeparator()
 
-        action = QtWidgets.QAction('Set Web Browser...', self)
+        #action = QtWidgets.QAction('Set Web Browser...', self)
+        action = QtWidgets.QAction('配置浏览器...', self)
         action.triggered.connect( cmd.setWebBrowser)
         self.menu['Configure'].addAction(action)
 
-        action = QtWidgets.QAction('Set Open Folder...', self)
+        #action = QtWidgets.QAction('Set Open Folder...', self)
+        action = QtWidgets.QAction('配置文件夹...', self)
         action.triggered.connect( cmd.setOpenCmd)
         self.menu['Configure'].addAction(action)
 
-        action = QtWidgets.QAction('Set Docs URL...', self)
+        #action = QtWidgets.QAction('Set Docs URL...', self)
+        action = QtWidgets.QAction('配置文件主机...', self)
         action.triggered.connect( cmd.setDocsURL)
         self.menu['Configure'].addAction(action)
 
-        action = QtWidgets.QAction('Set Text Editor...', self)
+        #action = QtWidgets.QAction('Set Text Editor...', self)
+        action = QtWidgets.QAction('配置文本编辑器...', self)
         action.triggered.connect( cmd.setTextEditor)
         self.menu['Configure'].addAction(action)
 
