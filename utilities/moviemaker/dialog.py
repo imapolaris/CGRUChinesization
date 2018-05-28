@@ -252,19 +252,23 @@ class Dialog(QtWidgets.QWidget):
         drawinglayout = QtWidgets.QVBoxLayout(drawingwidget)
 
         parameterswidget = QtWidgets.QWidget(self)
-        tabwidget.addTab(parameterswidget, 'Parameters')
+        #tabwidget.addTab(parameterswidget, 'Parameters')
+        tabwidget.addTab(parameterswidget, '参数选项')
         parameterslayout = QtWidgets.QVBoxLayout(parameterswidget)
 
         stereowidget = QtWidgets.QWidget(self)
-        tabwidget.addTab(stereowidget, 'Stereo')
+        #tabwidget.addTab(stereowidget, 'Stereo')
+        tabwidget.addTab(stereowidget, '立体声设置')
         stereolayout = QtWidgets.QVBoxLayout(stereowidget)
 
         decodewidget = QtWidgets.QWidget(self)
-        tabwidget.addTab(decodewidget, 'Decode')
+        #tabwidget.addTab(decodewidget, 'Decode')
+        tabwidget.addTab(decodewidget, '解码设置')
         decodeLayout = QtWidgets.QVBoxLayout(decodewidget)
 
         audiowidget = QtWidgets.QWidget(self)
-        tabwidget.addTab(audiowidget, 'Audio')
+        #tabwidget.addTab(audiowidget, 'Audio')
+        tabwidget.addTab(audiowidget, '音频设置')
         audioLayout = QtWidgets.QVBoxLayout(audiowidget)
 
         afanasywidget = QtWidgets.QWidget(self)
@@ -726,7 +730,8 @@ class Dialog(QtWidgets.QWidget):
         # Parameters
         layout = QtWidgets.QHBoxLayout()
         parameterslayout.addLayout(layout)
-        label = QtWidgets.QLabel('AV tool command:', self)
+        #label = QtWidgets.QLabel('AV tool command:', self)
+        label = QtWidgets.QLabel('AV工具命令:', self)
         layout.addWidget(label)
         label.setToolTip('AV tools command.')
         self.fields['avcmd'] = QtWidgets.QLineEdit(Options.avcmd, self)
@@ -736,7 +741,8 @@ class Dialog(QtWidgets.QWidget):
         # Fake time:
         layout = QtWidgets.QHBoxLayout()
         parameterslayout.addLayout(layout)
-        self.cbFakeTime = QtWidgets.QCheckBox('Fake Time:', self)
+        #self.cbFakeTime = QtWidgets.QCheckBox('Fake Time:', self)
+        self.cbFakeTime = QtWidgets.QCheckBox('修改时间:', self)
         self.cbFakeTime.setChecked(False)
         self.cbFakeTime.stateChanged.connect( self.evaluate)
         layout.addWidget(self.cbFakeTime)
@@ -795,12 +801,14 @@ class Dialog(QtWidgets.QWidget):
 
 
         # Image Correction:
-        group = QtWidgets.QGroupBox('Image Correction')
+        #group = QtWidgets.QGroupBox('Image Correction')
+        group = QtWidgets.QGroupBox('影响纠正')
         grouplayout = QtWidgets.QHBoxLayout()
         group.setLayout(grouplayout)
         parameterslayout.addWidget(group)
 
-        label = QtWidgets.QLabel('Colorspace:', self)
+        #label = QtWidgets.QLabel('Colorspace:', self)
+        label = QtWidgets.QLabel('色彩模式:', self)
         label.setToolTip(
             'Specify input images colorspace:\n'
             'auto: Automatically from metadata.\n'
@@ -829,7 +837,8 @@ class Dialog(QtWidgets.QWidget):
         grouplayout.addLayout(layout)
 
         layout = QtWidgets.QHBoxLayout()
-        label = QtWidgets.QLabel('Custom Options:', self)
+        #label = QtWidgets.QLabel('Custom Options:', self)
+        label = QtWidgets.QLabel('自定义:', self)
         layout.addWidget(label)
         label.setToolTip('Add this options to convert command.')
         self.fields['correction'] = QtWidgets.QLineEdit(Options.correction, self)
@@ -839,12 +848,14 @@ class Dialog(QtWidgets.QWidget):
 
 
         # Temporary format options:
-        group = QtWidgets.QGroupBox('Intermediate Images')
+        #group = QtWidgets.QGroupBox('Intermediate Images')
+        group = QtWidgets.QGroupBox('中间图像')
         parameterslayout.addWidget(group)
         grouplayout = QtWidgets.QHBoxLayout()
         group.setLayout(grouplayout)
 
-        grouplayout.addWidget(QtWidgets.QLabel('Format:', self))
+        #grouplayout.addWidget(QtWidgets.QLabel('Format:', self))
+        grouplayout.addWidget(QtWidgets.QLabel('格式:', self))
         self.fields['tmpformat'] = QtWidgets.QComboBox(self)
         i = 0
         for format in TmpImgFormats:
@@ -855,7 +866,8 @@ class Dialog(QtWidgets.QWidget):
         self.fields['tmpformat'].currentIndexChanged.connect( self.evaluate)
         grouplayout.addWidget(self.fields['tmpformat'])
 
-        label = QtWidgets.QLabel('Quality Options:', self)
+        #label = QtWidgets.QLabel('Quality Options:', self)
+        label = QtWidgets.QLabel('品质选择:', self)
         grouplayout.addWidget(label)
         label.setToolTip('Add this options to temporary image saving.')
         self.fields['tmpquality'] = QtWidgets.QLineEdit(Options.tmpquality, self)
@@ -866,13 +878,15 @@ class Dialog(QtWidgets.QWidget):
         # Auto append output filename:
         layout = QtWidgets.QHBoxLayout()
         parameterslayout.addLayout(layout)
+        #QtWidgets.QCheckBox('Append Movie File Name With Date', self)
         self.fields['datesuffix'] = \
-            QtWidgets.QCheckBox('Append Movie File Name With Date', self)
+            QtWidgets.QCheckBox('为视频文件名追加日期', self)
         self.fields['datesuffix'].setChecked(False)
         layout.addWidget(self.fields['datesuffix'])
         self.fields['datesuffix'].stateChanged.connect( self.evaluate)
+        #QtWidgets.QCheckBox('Append Movie File Name With Time', self)
         self.fields['timesuffix'] = \
-            QtWidgets.QCheckBox('Append Movie File Name With Time', self)
+            QtWidgets.QCheckBox('为视频文件名追加时间', self)
         self.fields['timesuffix'].setChecked(False)
         layout.addWidget(self.fields['timesuffix'])
         self.fields['timesuffix'].stateChanged.connect( self.evaluate)
@@ -880,14 +894,16 @@ class Dialog(QtWidgets.QWidget):
 
         # Stereo:
 
+        #QtWidgets.QCheckBox('Duplicate first sequence', self)
         self.fields['stereodub'] = \
-            QtWidgets.QCheckBox('Duplicate first sequence', self)
+            QtWidgets.QCheckBox('复制第一序列', self)
         self.fields['stereodub'].setChecked(Options.stereodub)
         self.fields['stereodub'].stateChanged.connect( self.evalStereo)
         stereolayout.addWidget(self.fields['stereodub'])
 
         # Second Pattern:
-        group = QtWidgets.QGroupBox('Second Sequence Pattern')
+        #group = QtWidgets.QGroupBox('Second Sequence Pattern')
+        group = QtWidgets.QGroupBox('第二个序列模式')
         stereolayout.addWidget(group)
         grouplayout = QtWidgets.QVBoxLayout()
         group.setLayout(grouplayout)
@@ -926,7 +942,8 @@ class Dialog(QtWidgets.QWidget):
 
         layout = QtWidgets.QHBoxLayout()
         stereolayout.addLayout(layout)
-        self.stereoStatusLabel = QtWidgets.QLabel('Stereo Status:', self)
+        #self.stereoStatusLabel = QtWidgets.QLabel('Stereo Status:', self)
+        self.stereoStatusLabel = QtWidgets.QLabel('立体声状态:', self)
         self.stereoStatusLabel.setAutoFillBackground(True)
         layout.addWidget(self.stereoStatusLabel)
         self.editStereoStatus = QtWidgets.QLineEdit(self)
@@ -972,7 +989,8 @@ class Dialog(QtWidgets.QWidget):
 
 
         # Audio:
-        group = QtWidgets.QGroupBox('Input Movie/Sound File')
+        #group = QtWidgets.QGroupBox('Input Movie/Sound File')
+        group = QtWidgets.QGroupBox('输入电影或音频文件')
         audioLayout.addWidget(group)
         grouplayout = QtWidgets.QVBoxLayout(group)
         layout = QtWidgets.QHBoxLayout()
@@ -984,12 +1002,14 @@ class Dialog(QtWidgets.QWidget):
         layout.addWidget(self.audioInputBrowse)
         self.audioInputBrowse.pressed.connect( self.audioBrowseInput)
 
-        group = QtWidgets.QGroupBox('Settings')
+        #group = QtWidgets.QGroupBox('Settings')
+        group = QtWidgets.QGroupBox('设置')
         audioLayout.addWidget(group)
         grouplayout = QtWidgets.QVBoxLayout(group)
         layout = QtWidgets.QHBoxLayout()
         grouplayout.addLayout(layout)
-        layout.addWidget(QtWidgets.QLabel('Sampling Frequency:'))
+        #layout.addWidget(QtWidgets.QLabel('Sampling Frequency:'))
+        layout.addWidget(QtWidgets.QLabel('采样频率:'))
         self.fields['audiofreq'] = QtWidgets.QSpinBox(self)
         layout.addWidget(self.fields['audiofreq'])
         self.fields['audiofreq'].setRange(1, 96)
@@ -998,7 +1018,8 @@ class Dialog(QtWidgets.QWidget):
         self.fields['audiofreq'].valueChanged.connect( self.evaluate)
         layout = QtWidgets.QHBoxLayout()
         grouplayout.addLayout(layout)
-        layout.addWidget(QtWidgets.QLabel('Bit Rate:'))
+        #layout.addWidget(QtWidgets.QLabel('Bit Rate:'))
+        layout.addWidget(QtWidgets.QLabel('码率:'))
         self.fields['audiorate'] = QtWidgets.QSpinBox(self)
         layout.addWidget(self.fields['audiorate'])
         self.fields['audiorate'].setRange(32, 256)
@@ -1007,7 +1028,8 @@ class Dialog(QtWidgets.QWidget):
         self.fields['audiorate'].valueChanged.connect( self.evaluate)
         layout = QtWidgets.QHBoxLayout()
         grouplayout.addLayout(layout)
-        layout.addWidget(QtWidgets.QLabel('Codec:'))
+        #layout.addWidget(QtWidgets.QLabel('Codec:'))
+        layout.addWidget(QtWidgets.QLabel('编解码器:'))
         self.fields['audiocodec'] = QtWidgets.QComboBox(self)
         layout.addWidget(self.fields['audiocodec'])
         i = 0
@@ -1026,50 +1048,59 @@ class Dialog(QtWidgets.QWidget):
 
         # Priority
         layout = QtWidgets.QHBoxLayout()
-        layout.addWidget(QtWidgets.QLabel('Priority:', self))
+        #layout.addWidget(QtWidgets.QLabel('Priority:', self))
+        layout.addWidget(QtWidgets.QLabel('优先级:', self))
         self.sbAfPriority = QtWidgets.QSpinBox(self)
         self.sbAfPriority.setRange(-1, 1000000)
         self.sbAfPriority.setValue(Options.afpriority)
         self.sbAfPriority.valueChanged.connect( self.evaluate)
         layout.addWidget(self.sbAfPriority)
-        layout.addWidget(QtWidgets.QLabel('"-1" Means default value.', self))
+        #layout.addWidget(QtWidgets.QLabel('"-1" Means default value.', self))
+        layout.addWidget(QtWidgets.QLabel('"-1" 默认值', self))
         afanasylayout.addLayout(layout)
 
         # Hosts
-        group = QtWidgets.QGroupBox('Hosts')
+        #group = QtWidgets.QGroupBox('Hosts')
+        group = QtWidgets.QGroupBox('主机设置')
         afanasylayout.addWidget(group)
         grouplayout = QtWidgets.QVBoxLayout()
         group.setLayout(grouplayout)
 
         layout = QtWidgets.QHBoxLayout()
         grouplayout.addLayout(layout)
-        layout.addWidget(QtWidgets.QLabel('Maximum Number:', self))
+        #layout.addWidget(QtWidgets.QLabel('Maximum Number:', self))
+        layout.addWidget(QtWidgets.QLabel('最大值:', self))
         self.sbAfMaxHosts = QtWidgets.QSpinBox(self)
         self.sbAfMaxHosts.setRange(-1, 1000000)
         self.sbAfMaxHosts.setValue(Options.afmaxhosts)
         self.sbAfMaxHosts.valueChanged.connect( self.evaluate)
         layout.addWidget(self.sbAfMaxHosts)
         layout.addWidget(
-            QtWidgets.QLabel('"-1" Means no hosts count limit.', self)
+            #QtWidgets.QLabel('"-1" Means no hosts count limit.', self)
+            QtWidgets.QLabel('"-1" 默认没有限制', self)
         )
 
         layout = QtWidgets.QHBoxLayout()
         grouplayout.addLayout(layout)
-        layout.addWidget(QtWidgets.QLabel('Hosts Names Mask:', self))
+        #layout.addWidget(QtWidgets.QLabel('Hosts Names Mask:', self))
+        layout.addWidget(QtWidgets.QLabel('主机名范围:', self))
         self.editAfHostsMask = QtWidgets.QLineEdit(Options.afhostsmask, self)
         self.editAfHostsMask.textEdited.connect( self.evaluate)
         layout.addWidget(self.editAfHostsMask)
-        layout.addWidget(QtWidgets.QLabel('Leave empty to run on any host.', self))
+        #layout.addWidget(QtWidgets.QLabel('Leave empty to run on any host.', self))
+        layout.addWidget(QtWidgets.QLabel('在任何主机运行', self))
 
         layout = QtWidgets.QHBoxLayout()
         grouplayout.addLayout(layout)
-        layout.addWidget(QtWidgets.QLabel('Exclude Hosts Names Mask:', self))
+        #layout.addWidget(QtWidgets.QLabel('Exclude Hosts Names Mask:', self))
+        layout.addWidget(QtWidgets.QLabel('禁用机器名:', self))
         self.editAfHostsMaskExclude = \
             QtWidgets.QLineEdit(Options.afhostsmaskex, self)
         self.editAfHostsMaskExclude.textEdited.connect( self.evaluate)
         layout.addWidget(self.editAfHostsMaskExclude)
         layout.addWidget(
-            QtWidgets.QLabel('Leave empty not to exclude any host.', self))
+            #QtWidgets.QLabel('Leave empty not to exclude any host.', self))
+            QtWidgets.QLabel('不禁止任何主机', self))
 
         # Depends
         group = QtWidgets.QGroupBox('Depends')
@@ -1084,7 +1115,8 @@ class Dialog(QtWidgets.QWidget):
         self.editAfDependMask.textEdited.connect( self.evaluate)
         layout.addWidget(self.editAfDependMask)
         layout.addWidget(
-            QtWidgets.QLabel('Leave empty not to wait any jobs.', self)
+            #QtWidgets.QLabel('Leave empty not to wait any jobs.', self)
+            QtWidgets.QLabel('预留资源', self)
         )
 
         layout = QtWidgets.QHBoxLayout()
@@ -1094,7 +1126,8 @@ class Dialog(QtWidgets.QWidget):
             QtWidgets.QLineEdit(Options.afdependmaskgl, self)
         self.editAfDependMaskGlobal.textEdited.connect( self.evaluate)
         layout.addWidget(self.editAfDependMaskGlobal)
-        layout.addWidget(QtWidgets.QLabel('Set mask to wait any user jobs.', self))
+        #layout.addWidget(QtWidgets.QLabel('Set mask to wait any user jobs.', self))
+        layout.addWidget(QtWidgets.QLabel('允许所有作业使用', self))
 
         # Capacity
         group = QtWidgets.QGroupBox('Capacity')
