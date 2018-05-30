@@ -253,7 +253,8 @@ class Tray(QtWidgets.QSystemTrayIcon):
         self.setContextMenu(self.menu['menu'])
 
         # Tray tooltip:
-        self.setToolTip('%s Keeper' % cgruconfig.VARS['company'].upper())
+        #self.setToolTip('%s Keeper' % cgruconfig.VARS['company'].upper())
+        self.setToolTip('奇幻空间')
 
         # Tray icon:
         icon_filename = cgruconfig.VARS['tray_icon']
