@@ -97,8 +97,10 @@ Activities = ['comp', 'render', 'anim', 'dyn', 'sim', 'stereo', 'cloth',
 FontsList = ['', 'Arial', 'Courier-New', 'Impact', 'Tahoma', 'Times-New-Roman',
              'Verdana']
 Encoders = ['ffmpeg', 'mencoder', 'nuke']
-Gravity = ['SouthEast', 'South', 'SouthWest', 'West', 'NorthWest', 'North',
-           'NorthEast', 'East', 'Center']
+#Gravity = ['SouthEast', 'South', 'SouthWest', 'West', 'NorthWest', 'North',
+#           'NorthEast', 'East', 'Center']
+Gravity = ['右下角', '下边', '左下角', '左边', '左上角', '上边',
+           '右上角', '右边', '中间']
 
 Namings = [
     '(s)_(v)_(d)',
@@ -553,7 +555,8 @@ class Dialog(QtWidgets.QWidget):
 
         # Drawing:
         layout = QtWidgets.QHBoxLayout()
-        label = QtWidgets.QLabel('Slate Template:', self)
+        #label = QtWidgets.QLabel('Slate Template:', self)
+        label = QtWidgets.QLabel('材质模板:', self)
         layout.addWidget(label)
         label.setToolTip(
             'Slate frame template.\n'
@@ -561,7 +564,8 @@ class Dialog(QtWidgets.QWidget):
         )
         self.fields['slate'] = QtWidgets.QComboBox(self)
         layout.addWidget(self.fields['slate'])
-        label = QtWidgets.QLabel('Frame Template:', self)
+        #label = QtWidgets.QLabel('Frame Template:', self)
+        label = QtWidgets.QLabel('边框模板:', self)
         layout.addWidget(label)
         label.setToolTip(
             'Frame template.\n'
@@ -578,7 +582,8 @@ class Dialog(QtWidgets.QWidget):
         self.fields['template'].currentIndexChanged.connect( self.evaluate)
         drawinglayout.addLayout(layout)
 
-        self.fields['addtime'] = QtWidgets.QCheckBox('Add Time To Date', self)
+        #self.fields['addtime'] = QtWidgets.QCheckBox('Add Time To Date', self)
+        self.fields['addtime'] = QtWidgets.QCheckBox('添加时间', self)
         self.fields['addtime'].setChecked(False)
         self.fields['addtime'].stateChanged.connect( self.evaluate)
         drawinglayout.addWidget(self.fields['addtime'])
@@ -664,16 +669,19 @@ class Dialog(QtWidgets.QWidget):
         self.fields['lgspath'] = QtWidgets.QLineEdit(Options.lgspath, self)
         layout.addWidget(self.fields['lgspath'])
         self.fields['lgspath'].editingFinished.connect( self.evaluate)
-        self.btnBrowseLgs = QtWidgets.QPushButton('Browse', self)
+        #self.btnBrowseLgs = QtWidgets.QPushButton('Browse', self)
+        self.btnBrowseLgs = QtWidgets.QPushButton('浏览', self)
         self.btnBrowseLgs.pressed.connect( self.browseLgs)
         layout.addWidget(self.btnBrowseLgs)
-        layout.addWidget(QtWidgets.QLabel('Size:', self))
+        #layout.addWidget(QtWidgets.QLabel('Size:', self))
+        layout.addWidget(QtWidgets.QLabel('大小:', self))
         self.fields['lgssize'] = QtWidgets.QSpinBox(self)
         self.fields['lgssize'].setRange(1, 100)
         self.fields['lgssize'].setValue(Options.lgssize)
         self.fields['lgssize'].valueChanged.connect( self.evaluate)
         layout.addWidget(self.fields['lgssize'])
-        layout.addWidget(QtWidgets.QLabel('%  Position:', self))
+        #layout.addWidget(QtWidgets.QLabel('%  Position:', self))
+        layout.addWidget(QtWidgets.QLabel('%  位置:', self))
         self.fields['lgsgrav'] = QtWidgets.QComboBox(self)
         i = 0
         for grav in Gravity:
@@ -691,16 +699,19 @@ class Dialog(QtWidgets.QWidget):
         self.fields['lgfpath'] = QtWidgets.QLineEdit(Options.lgfpath, self)
         layout.addWidget(self.fields['lgfpath'])
         self.fields['lgfpath'].editingFinished.connect( self.evaluate)
-        self.btnBrowseLgf = QtWidgets.QPushButton('Browse', self)
+        #self.btnBrowseLgf = QtWidgets.QPushButton('Browse', self)
+        self.btnBrowseLgf = QtWidgets.QPushButton('浏览', self)
         self.btnBrowseLgf.pressed.connect( self.browseLgf)
         layout.addWidget(self.btnBrowseLgf)
-        layout.addWidget(QtWidgets.QLabel('Size:', self))
+        #layout.addWidget(QtWidgets.QLabel('Size:', self))
+        layout.addWidget(QtWidgets.QLabel('大小:', self))
         self.fields['lgfsize'] = QtWidgets.QSpinBox(self)
         self.fields['lgfsize'].setRange(1, 100)
         self.fields['lgfsize'].setValue(Options.lgfsize)
         self.fields['lgfsize'].valueChanged.connect( self.evaluate)
         layout.addWidget(self.fields['lgfsize'])
-        layout.addWidget(QtWidgets.QLabel('%  Position:', self))
+        #layout.addWidget(QtWidgets.QLabel('%  Position:', self))
+        layout.addWidget(QtWidgets.QLabel('%  位置:', self))
         self.fields['lgfgrav'] = QtWidgets.QComboBox(self)
         i = 0
         for grav in Gravity:
@@ -714,7 +725,8 @@ class Dialog(QtWidgets.QWidget):
 
         # Font:
         lFont = QtWidgets.QHBoxLayout()
-        tFont = QtWidgets.QLabel('Annotations Text Font:', self)
+        #tFont = QtWidgets.QLabel('Annotations Text Font:', self)
+        tFont = QtWidgets.QLabel('添加文字:', self)
         lFont.addWidget(tFont)
         self.fields['font'] = QtWidgets.QLineEdit('', self)
         lFont.addWidget(self.fields['font'])
