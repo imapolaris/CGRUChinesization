@@ -176,7 +176,7 @@ function Monitor( i_args)
 	this.elCtrlSortLabel = this.document.createElement('span');
 	this.elCtrlSort.appendChild( this.elCtrlSortLabel);
 	this.elCtrlSortLabel.classList.add('label');
-	this.elCtrlSortLabel.textContent = 'Sort:';
+	this.elCtrlSortLabel.textContent = '排序:';
 
 	this.elCtrlSortParam = this.document.createElement('span');
 	this.elCtrlSort.appendChild( this.elCtrlSortParam);
@@ -194,7 +194,7 @@ function Monitor( i_args)
 	this.elCtrlFilterLabel = this.document.createElement('div');
 	this.elCtrlFilter.appendChild( this.elCtrlFilterLabel);
 	this.elCtrlFilterLabel.classList.add('label');
-	this.elCtrlFilterLabel.textContent = 'Filter:';
+	this.elCtrlFilterLabel.textContent = '筛选:';
 
 	this.elCtrlFilterParam = this.document.createElement('div');
 	this.elCtrlFilter.appendChild( this.elCtrlFilterParam);
