@@ -120,61 +120,71 @@ class Tray(QtWidgets.QSystemTrayIcon):
                         self.menu[menuname].addSeparator()
 
         # Add permanent items to 'Afanasy':
-        if not self.addMenu(self.menu['menu'], 'AFANASY'):
-            self.menu['AFANASY'].addSeparator()
+        # if not self.addMenu(self.menu['menu'], 'AFANASY'):
+        if not self.addMenu(self.menu['menu'], '渲染'):
+            self.menu['渲染'].addSeparator()
 
-        action = QtWidgets.QAction('Web GUI', self)
+        # action = QtWidgets.QAction('Web GUI', self)
+        action = QtWidgets.QAction('Web页面', self)
         action.triggered.connect( cmd.afwebgui)
-        self.menu['AFANASY'].addAction(action)
-        self.menu['AFANASY'].addSeparator()
+        self.menu['渲染'].addAction(action)
+        self.menu['渲染'].addSeparator()
 
-        self.action_user = QtWidgets.QAction('Set User...', self)
+        # self.action_user = QtWidgets.QAction('Set User...', self)
+        self.action_user = QtWidgets.QAction('用户设置', self)
         self.action_user.triggered.connect( render.setUserDialog)
         self.action_user.setToolTip('Change local render user name.')
-        self.menu['AFANASY'].addAction(self.action_user)
+        self.menu['渲染'].addAction(self.action_user)
 
-        action = QtWidgets.QAction('Set nimby', self)
+        # action = QtWidgets.QAction('Set nimby', self)
+        action = QtWidgets.QAction('后台设置', self)
         action.triggered.connect( nimby.setnimby)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
         action = QtWidgets.QAction('Set NIMBY', self)
         action.triggered.connect( nimby.setNIMBY)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
-        action = QtWidgets.QAction('Set Free && Unpause', self)
+        # action = QtWidgets.QAction('Set Free && Unpause', self)
+        action = QtWidgets.QAction('作业释放', self)
         action.triggered.connect( nimby.setFreeUnpause)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
-        action = QtWidgets.QAction('Eject Tasks', self)
+        # action = QtWidgets.QAction('Eject Tasks', self)
+        action = QtWidgets.QAction('开始任务', self)
         action.triggered.connect( nimby.ejectTasks)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
-        action = QtWidgets.QAction('Eject Not My Tasks', self)
+        # action = QtWidgets.QAction('Eject Not My Tasks', self)
+        action = QtWidgets.QAction('关闭其它任务', self)
         action.triggered.connect( nimby.ejectNotMyTasks)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
-        action = QtWidgets.QAction('Render Info', self)
+        # action = QtWidgets.QAction('Render Info', self)
+        action = QtWidgets.QAction('渲染信息', self)
         action.triggered.connect( self.renderInfo)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
-        self.menu['AFANASY'].addSeparator()
+        self.menu['渲染'].addSeparator()
 
-        action = QtWidgets.QAction('Nimby Schedule...', self)
+        # action = QtWidgets.QAction('Nimby Schedule...', self)
+        action = QtWidgets.QAction('运行模式', self)
         action.triggered.connect( self.editNimby)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
-        self.menu['AFANASY'].addSeparator()
+        self.menu['渲染'].addSeparator()
 
-        action = QtWidgets.QAction('Set Server...', self)
+        #action = QtWidgets.QAction('Set Server...', self)
+        action = QtWidgets.QAction('服务器设置', self)
         action.triggered.connect( cmd.setAFANASYServer)
-        self.menu['AFANASY'].addAction(action)
+        self.menu['渲染'].addAction(action)
 
 
         self.menu['menu'].addSeparator()
 
         # Add Software menu if it was not created by custom files:
-        if not 'Software' in self.menu:
-            self.addMenu(self.menu['menu'], 'Software')
+        if not '软件' in self.menu:
+            self.addMenu(self.menu['menu'], '软件')
             self.menu['menu'].addSeparator()
             action = QtWidgets.QAction(
                 QtGui.QIcon(cgruutils.getIconFileName('folder')),
@@ -182,7 +192,7 @@ class Tray(QtWidgets.QSystemTrayIcon):
                 self
             )
             action.triggered.connect( software.browse)
-            self.menu['Software'].addAction(action)
+            self.menu['软件'].addAction(action)
             for soft in software.Names:
                 icon = software.getIcon(soft)
                 if icon is None:
@@ -190,65 +200,71 @@ class Tray(QtWidgets.QSystemTrayIcon):
                 else:
                     action = QtWidgets.QAction(icon, soft, self)
                 eval("action.triggered.connect(software.start%s)" % soft)
-                self.menu['Software'].addAction(action)
+                self.menu['软件'].addAction(action)
             # Software setup:
             self.menu['Setup Soft'] = QtWidgets.QMenu('Setup Soft')
-            self.menu['Software'].addMenu(self.menu['Setup Soft'])
+            self.menu['软件'].addMenu(self.menu['Setup Soft'])
             for soft in software.Names:
                 action = QtWidgets.QAction(soft, self)
                 eval("action.triggered.connect(software.locate%s)" % soft)
                 self.menu['Setup Soft'].addAction(action)
             # Software examples:
             self.menu['Examples'] = QtWidgets.QMenu('Examples')
-            self.menu['Software'].addMenu(self.menu['Examples'])
+            self.menu['软件'].addMenu(self.menu['Examples'])
             for soft in software.Names:
                 action = QtWidgets.QAction(soft, self)
                 eval("action.triggered.connect(software.example%s)" % soft)
                 self.menu['Examples'].addAction(action)
 
         # Add permanent items to 'Configure':
-        if not self.addMenu(self.menu['menu'], 'Configure'):
-            self.menu['Configure'].addSeparator()
+        #if not self.addMenu(self.menu['menu'], 'Configure'):
+        if not self.addMenu(self.menu['menu'], '系统配置'):
+            self.menu['系统配置'].addSeparator()
 
         if serverhttps.isRunning:
-            self.addAction('Configure', False,  'HTTPS Server...', self.httpsServer)
-            self.menu['Configure'].addSeparator()
+            self.addAction('系统配置', False,  'HTTPS Server...', self.httpsServer)
+            self.menu['系统配置'].addSeparator()
 
         #action = QtWidgets.QAction('Set Web Browser...', self)
         action = QtWidgets.QAction('配置浏览器...', self)
         action.triggered.connect( cmd.setWebBrowser)
-        self.menu['Configure'].addAction(action)
+        self.menu['系统配置'].addAction(action)
 
         #action = QtWidgets.QAction('Set Open Folder...', self)
         action = QtWidgets.QAction('配置文件夹...', self)
         action.triggered.connect( cmd.setOpenCmd)
-        self.menu['Configure'].addAction(action)
+        self.menu['系统配置'].addAction(action)
 
         #action = QtWidgets.QAction('Set Docs URL...', self)
         action = QtWidgets.QAction('配置文件主机...', self)
         action.triggered.connect( cmd.setDocsURL)
-        self.menu['Configure'].addAction(action)
+        self.menu['系统配置'].addAction(action)
 
         #action = QtWidgets.QAction('Set Text Editor...', self)
         action = QtWidgets.QAction('配置文本编辑器...', self)
         action.triggered.connect( cmd.setTextEditor)
-        self.menu['Configure'].addAction(action)
+        self.menu['系统配置'].addAction(action)
 
-        action = QtWidgets.QAction('Edit Config...', self)
+        #action = QtWidgets.QAction('Edit Config...', self)
+        action = QtWidgets.QAction('设置配置', self)
         action.triggered.connect( cmd.editCGRUConfig)
-        self.menu['Configure'].addAction(action)
+        self.menu['系统配置'].addAction(action)
 
-        self.menu['Configure'].addSeparator()
+        self.menu['系统配置'].addSeparator()
 
-        action = QtWidgets.QAction('Reload Config', self)
+        #action = QtWidgets.QAction('Reload Config', self)
+        action = QtWidgets.QAction('重置服务', self)
         action.triggered.connect( cmd.confReload)
-        self.menu['Configure'].addAction(action)
+        self.menu['系统配置'].addAction(action)
 
-        self.addAction('menu', True,  'Show Info...',         self.cgruInfo, 'info')
+        #self.addAction('menu', True,  'Show Info...',         self.cgruInfo, 'info')
+        self.addAction('menu', True,  '查看配置',         self.cgruInfo, 'info')
         #self.addAction('menu', True,  'Documentation...',     cmd.cgruDocs)
         #self.addAction('menu', False, 'Forum...',             cmd.cgruForum)
-        self.addAction('menu', True,  'Restart',              cmd.restart)
-        self.addAction('menu', False, 'Quit',                 cmd.quit)
+        #self.addAction('menu', True,  'Restart',              cmd.restart)
+        self.addAction('menu', True,  '重启服务',              cmd.restart)
+        #self.addAction('menu', False, 'Quit',                 cmd.quit)
+        self.addAction('menu', False, '退出服务',                 cmd.quit)
 
         self.setContextMenu(self.menu['menu'])
 
