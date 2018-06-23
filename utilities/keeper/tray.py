@@ -183,8 +183,8 @@ class Tray(QtWidgets.QSystemTrayIcon):
         self.menu['menu'].addSeparator()
 
         # Add Software menu if it was not created by custom files:
-        if not '软件' in self.menu:
-            self.addMenu(self.menu['menu'], '软件')
+        if not '专业软件' in self.menu:
+            self.addMenu(self.menu['menu'], '专业软件')
             self.menu['menu'].addSeparator()
             action = QtWidgets.QAction(
                 QtGui.QIcon(cgruutils.getIconFileName('folder')),
@@ -192,7 +192,7 @@ class Tray(QtWidgets.QSystemTrayIcon):
                 self
             )
             action.triggered.connect( software.browse)
-            self.menu['软件'].addAction(action)
+            self.menu['专业软件'].addAction(action)
             for soft in software.Names:
                 icon = software.getIcon(soft)
                 if icon is None:
@@ -200,17 +200,17 @@ class Tray(QtWidgets.QSystemTrayIcon):
                 else:
                     action = QtWidgets.QAction(icon, soft, self)
                 eval("action.triggered.connect(software.start%s)" % soft)
-                self.menu['软件'].addAction(action)
+                self.menu['专业软件'].addAction(action)
             # Software setup:
             self.menu['Setup Soft'] = QtWidgets.QMenu('Setup Soft')
-            self.menu['软件'].addMenu(self.menu['Setup Soft'])
+            self.menu['专业软件'].addMenu(self.menu['Setup Soft'])
             for soft in software.Names:
                 action = QtWidgets.QAction(soft, self)
                 eval("action.triggered.connect(software.locate%s)" % soft)
                 self.menu['Setup Soft'].addAction(action)
             # Software examples:
             self.menu['Examples'] = QtWidgets.QMenu('Examples')
-            self.menu['软件'].addMenu(self.menu['Examples'])
+            self.menu['专业软件'].addMenu(self.menu['Examples'])
             for soft in software.Names:
                 action = QtWidgets.QAction(soft, self)
                 eval("action.triggered.connect(software.example%s)" % soft)
