@@ -103,6 +103,18 @@ class Tray(QtWidgets.QSystemTrayIcon):
                     for line in lines:
                         if line.find('Name=') != -1:
                             itemname = line.split('Name=')[-1].strip()
+                            if itemname == 'Scan Scan...':
+                                itemname = '影视搜索'
+                            if itemname == 'Dailies...':
+                                itemname = '影视剪辑'
+                            if itemname == 'Check RegExp...':
+                                itemname = '检测对象'
+                            if itemname == 'Start Watch...':
+                                itemname = '作业监控'
+                            if itemname == 'Submit Job...':
+                                itemname = '作业提交'
+                            if itemname == 'Local Render...':
+                                itemname = '本地渲染'
                         if line.find('Icon=') != -1:
                             iconpath = line.split('Icon=')[-1].strip()
                         if line.find('Separator') != -1:
