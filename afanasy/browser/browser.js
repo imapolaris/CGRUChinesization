@@ -45,7 +45,18 @@ function g_Init()
 	var header = $('header');
 	g_monitor_buttons = header.getElementsByClassName('mbutton');
 	for( var i = 0; i < g_monitor_buttons.length; i++)
-		g_monitor_buttons[i].onclick = function(e){return g_MButtonClicked(e.currentTarget.textContent,e);};
+	{
+		g_monitor_buttons[i].onclick = function(e){
+			var textContent = e.currentTarget.textContent;
+			if (textContent == '作业监控')
+				textContent = 'jobs';
+			else if (textContent == '资源监控')
+				textContent = 'renders';
+			else if (textContent == '用户')
+				textContent = 'users';
+			return g_MButtonClicked(textContent,e);
+		};
+	}
 
 	g_GetConfig();
 }
